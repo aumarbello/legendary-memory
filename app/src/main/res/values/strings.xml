@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Showcase</string>
+    <string name="label_shopping_cart">Shopping Cart</string>
+    <string name="label_menu">Menu</string>
+    <string name="label_explore">Explore</string>
+    <string name="label_filter">Filter</string>
+    <string name="hint_search">Search</string>
+    <string name="label_brand_icon">Brand Icon</string>
+    <string name="label_car_image">Car Image</string>
+    <string name="label_add_to_cart">Add to cart</string>
+    <string name="label_home">Home</string>
+    <string name="label_favourites">Favourites</string>
+    <string name="label_notifications">Notifications</string>
+    <string name="label_conversations">Conversations</string>
+    <string name="label_3d">3D View</string>
+    <string name="label_car_details">Car Details</string>
 </resources>
