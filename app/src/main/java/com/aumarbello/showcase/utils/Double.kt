@@ -3,10 +3,13 @@ package com.aumarbello.showcase.utils
 import java.text.NumberFormat
 import java.util.*
 
-fun Long.formatPrice(): String {
+fun Double?.formatRating(): String {
     val format = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
-        maximumFractionDigits = 0
+        maximumFractionDigits = 2
     }
 
-    return "₦${format.format(this)}"
+    return if (this != null)
+        format.format(this)
+    else
+        ""
 }

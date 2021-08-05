@@ -3,6 +3,7 @@ package com.aumarbello.showcase.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.aumarbello.showcase.data.models.PaginatedResponse
+import com.aumarbello.showcase.data.models.Pagination
 
 class GenericPagingSource <T : Any, A> (
     private val argument: A,
@@ -16,10 +17,10 @@ class GenericPagingSource <T : Any, A> (
             LoadResult.Page(
                 response.items,
                 prevKey = null,
-                //TODO handle last page
-                nextKey = response.pagination.currentPage.inc()
+                nextKey = getNextPage(response.pagination)
             )
         } catch (e: Exception) {
+            e.printStackTrace()
             LoadResult.Error(e)
         }
     }
@@ -29,5 +30,14 @@ class GenericPagingSource <T : Any, A> (
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
         }
+    }
+
+    private fun getNextPage(pagination: Pagination): Int? {
+        val possibleTotalSoFar = pagination.currentPage * pagination.pageSize
+
+        return if (possibleTotalSoFar < pagination.total)
+            pagination.currentPage.inc()
+        else
+            null
     }
 }

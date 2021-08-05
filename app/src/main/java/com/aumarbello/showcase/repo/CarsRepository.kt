@@ -1,5 +1,6 @@
 package com.aumarbello.showcase.repo
 
+import androidx.lifecycle.asLiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.aumarbello.showcase.data.api.ShowcaseService
@@ -44,7 +45,8 @@ class CarsRepository @Inject constructor(
             carDetails.transmission,
             carDetails.year.toString(),
             carDetails.engineType,
-            carDetails.fuelType
+            carDetails.fuelType,
+            carDetails.model.wheelType
         )
         if (carDetails.hasWarranty) information.add("Warranty")
         if (carDetails.hasFinancing) information.add("Finance Options")
@@ -54,6 +56,7 @@ class CarsRepository @Inject constructor(
 
         CarDetails(
             carDetails.id,
+            "${carDetails.model.make.name} ${carDetails.model.name}",
             carDetails.year,
             "${carDetails.mileage} ${carDetails.mileageUnit}",
             carDetails.price.formatPrice(),
@@ -75,5 +78,5 @@ class CarsRepository @Inject constructor(
         preferences.clearCart()
     }
 
-    fun getCartInfo() = preferences.cartInfo
+    fun getCartInfo() = preferences.cartInfo.asLiveData()
 }

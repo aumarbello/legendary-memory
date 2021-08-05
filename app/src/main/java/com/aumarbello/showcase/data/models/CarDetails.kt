@@ -2,6 +2,7 @@ package com.aumarbello.showcase.data.models
 
 data class CarDetails (
     val id: String,
+    val title: String,
     val year: Int,
     val mileage: String,
     val price: String,

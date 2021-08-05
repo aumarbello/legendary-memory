@@ -3,7 +3,7 @@ package com.aumarbello.showcase.data.models
 import com.google.gson.annotations.SerializedName
 
 data class PaginatedResponse <T> (
-    @SerializedName("makeList")
+    @SerializedName("makeList", alternate = ["result"])
     val items: List<T>,
     val pagination: Pagination
 )

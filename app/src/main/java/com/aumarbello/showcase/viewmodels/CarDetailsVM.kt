@@ -17,4 +17,10 @@ class CarDetailsVM @Inject constructor(
     fun setCarId(id: String) {
         load { _details.value = repository.getCarDetails(id) }
     }
+
+    fun getCartInfo() = repository.getCartInfo()
+
+    fun addToCart() {
+        load { repository.addToCart() }
+    }
 }

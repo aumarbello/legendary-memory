@@ -11,8 +11,8 @@ interface ShowcaseService {
 
     @GET("inventory/car/search")
     suspend fun searchVehicles(
-        @Query("q") query: String,
-        @Query("page") page: Int,
+        @Query("query") query: String,
+        @Query("page_number") page: Int,
     ): PaginatedResponse<Car>
 
     @GET("inventory/car/{carId}")

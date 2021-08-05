@@ -14,7 +14,7 @@ class CarsListVM @Inject constructor(
         .flow
         .cachedIn(viewModelScope)
 
-    fun searchCars(query: String = "") = repository.searchCars(query)
+    fun searchCars(query: String) = repository.searchCars(query)
         .flow
         .cachedIn(viewModelScope)
 

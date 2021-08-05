@@ -21,6 +21,6 @@ data class Car(
     val isSold: Boolean,
     val hasThreeDImage: Boolean,
     @SerializedName("gradeScore")
-    val rating: Double,
+    val rating: Double?,
     val threeDImageUrl: String?
 )

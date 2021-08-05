@@ -24,5 +24,18 @@ data class CarDetailsResponse (
     val engineType: String,
     val isFirstOwner: Boolean,
     val hasThreeDImage: Boolean,
-    val threeDImageUrl: String?
+    val threeDImageUrl: String?,
+    val model: CarModel
+)
+
+data class CarModel(
+    val id: Long,
+    val wheelType: String,
+    val name: String,
+    val make: ModelMake,
+)
+
+data class ModelMake(
+    val id: Long,
+    val name: String,
 )
