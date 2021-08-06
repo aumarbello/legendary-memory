@@ -23,7 +23,7 @@
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:background="@drawable/bg_cart_count"
-        android:textSize="7sp"
+        android:textSize="10sp"
         android:gravity="center"
         android:textColor="@color/yellow"
         android:layout_marginStart="18dp"

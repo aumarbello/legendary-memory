@@ -14,8 +14,10 @@
         android:name=".ShowcaseApplication"
         >
         <activity
-            android:name=".ui.CarListActivity"
-            android:exported="true">
+            android:name=".ui.SplashActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.CarDetailsActivity" />
-        <activity android:name=".ui.WebViewActivity" />
+        <activity android:name=".ui.CarListActivity" />
     </application>
 
 </manifest>

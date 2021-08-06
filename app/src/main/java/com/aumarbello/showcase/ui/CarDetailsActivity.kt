@@ -1,14 +1,18 @@
 package com.aumarbello.showcase.ui
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
+import android.net.Uri
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.StyleSpan
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import com.aumarbello.showcase.R
@@ -16,6 +20,7 @@ import com.aumarbello.showcase.databinding.ActivityCarDetailsBinding
 import com.aumarbello.showcase.ui.adapters.MediaAdapter
 import com.aumarbello.showcase.utils.isVideoUrl
 import com.aumarbello.showcase.utils.load
+import com.aumarbello.showcase.utils.showSnackBar
 import com.aumarbello.showcase.viewmodels.CarDetailsVM
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -70,6 +75,7 @@ class CarDetailsActivity: AppCompatActivity() {
 
     private fun setObservers() {
         viewModel.details.observe(this) { details ->
+            Log.d("Sama", "Set up")
             binding.title.text = details.title
             binding.datePosted.text = createBoldSpan("Posted: ", details.datePosted)
             binding.price.text = createBoldSpan("Price: ", details.price)
@@ -80,8 +86,14 @@ class CarDetailsActivity: AppCompatActivity() {
             binding.details.threeDView.isVisible = details.hasThreeDImage
             binding.details.threeDView.setOnClickListener {
                 if (details.threeDImageUrl != null) {
-                    val intent = WebViewActivity.getStartIntent(this, details.threeDImageUrl)
-                    startActivity(intent)
+                    try {
+                        CustomTabsIntent.Builder()
+                            .build()
+                            .launchUrl(this, Uri.parse(details.threeDImageUrl))
+                    } catch (ex: ActivityNotFoundException) {
+                        ex.printStackTrace()
+                        showSnackBar("Compatible application not found")
+                    }
                 }
             }
 
@@ -110,6 +122,8 @@ class CarDetailsActivity: AppCompatActivity() {
             binding.loader.isVisible = it
             binding.container.isVisible = !it
         }
+
+        viewModel.error.observe(this) { showSnackBar(it) }
     }
 
     private fun setListeners() {
