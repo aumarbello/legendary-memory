@@ -35,9 +35,22 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/label_car_image"
-        android:layout_marginVertical="48dp"
-        android:layout_marginHorizontal="68dp"
+        android:layout_margin="40dp"
         android:elevation="16dp"
+        app:layout_constraintStart_toStartOf="@id/image_background"
+        app:layout_constraintEnd_toEndOf="@id/image_background"
+        app:layout_constraintTop_toTopOf="@id/image_background"
+        app:layout_constraintBottom_toBottomOf="@id/image_background"
+        tools:src="@tools:sample/backgrounds/scenic"
+        />
+
+    <com.google.android.exoplayer2.ui.StyledPlayerView
+        android:id="@+id/player_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:elevation="16dp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/image_background"
         app:layout_constraintEnd_toEndOf="@id/image_background"
         app:layout_constraintTop_toTopOf="@id/image_background"
@@ -71,25 +84,8 @@
         android:fontFamily="@font/gilroy_bold"
         app:layout_constraintTop_toBottomOf="@id/thumbnails"
         app:layout_constraintStart_toStartOf="@id/image_background"
-        app:layout_constraintStart_toEndOf="@id/rating"
+        app:layout_constraintStart_toEndOf="@id/three_d_view"
         tools:text="Abuja, Nigeria"
-        />
-
-    <TextView
-        android:id="@+id/rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/text_color_light"
-        android:textSize="15sp"
-        android:elevation="10dp"
-        android:drawablePadding="4dp"
-        android:gravity="center"
-        app:drawableStartCompat="@drawable/ic_rating"
-        app:drawableTint="@color/yellow"
-        app:layout_constraintTop_toTopOf="@id/location"
-        app:layout_constraintBottom_toBottomOf="@id/location"
-        app:layout_constraintEnd_toEndOf="@id/image_background"
-        tools:text="(4.9)"
         />
 
     <TextView
@@ -100,8 +96,7 @@
         android:textSize="15sp"
         android:textColor="@color/text_color_light"
         android:elevation="10dp"
-        app:layout_constraintTop_toTopOf="@id/three_d_view"
-        app:layout_constraintBottom_toBottomOf="@id/three_d_view"
+        app:layout_constraintTop_toBottomOf="@id/location"
         app:layout_constraintStart_toStartOf="@id/image_background"
         tools:text="123,492 km"
         />
@@ -118,22 +113,33 @@
         android:paddingVertical="12dp"
         android:paddingHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="@id/image_background"
-        app:layout_constraintTop_toBottomOf="@id/rating"
+        app:layout_constraintTop_toTopOf="@id/location"
         />
 
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/info_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="three_d_view,mileage"
+        />
+    
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/information"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="4dp"
+        android:elevation="20dp"
+        app:chipSpacingVertical="0dp"
         app:layout_constraintStart_toStartOf="@id/image_background"
         app:layout_constraintEnd_toEndOf="@id/image_background"
-        app:layout_constraintTop_toBottomOf="@id/three_d_view"
+        app:layout_constraintTop_toBottomOf="@id/info_barrier"
         />
+
 
     <Space
         android:layout_width="wrap_content"
-        android:layout_height="24dp"
+        android:layout_height="50dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/information"
         />
