@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import com.aumarbello.showcase.BuildConfig
 import com.aumarbello.showcase.databinding.ActivityCarListBinding
 import com.aumarbello.showcase.ui.adapters.BrandsAdapter
 import com.aumarbello.showcase.ui.adapters.CarItemListener
@@ -34,6 +35,8 @@ class CarListActivity : AppCompatActivity(), CarItemListener {
 
         binding.brandsList.adapter = brandsAdapter
         binding.carsList.adapter = carsAdapter
+
+        binding.explore.text = BuildConfig.SAMPLE
 
         setObservers()
         setListeners()

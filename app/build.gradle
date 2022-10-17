@@ -23,6 +23,15 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            def exam = "\"DEFAULT\""
+            if (project.hasProperty("PWD")) {
+                exam = project["PWD"]
+            }
+
+            buildConfigField "String", "SAMPLE", exam
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
